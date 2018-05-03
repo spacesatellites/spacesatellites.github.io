@@ -1,0 +1,29 @@
+{
+  "name": "satellites",
+  "version": "1.0.0",
+  "description": "display satellites with 3js",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spacesatellites/spacesatellites.github.io.git"
+  },
+  "keywords": [
+    "[\"node\"",
+    "\"express\"",
+    "\"heroku\"]"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/spacesatellites/spacesatellites.github.io/issues"
+  },
+  "homepage": "https://github.com/spacesatellites/spacesatellites.github.io#readme",
+  "dependencies": {
+    "ejs": "^2.5.9",
+    "express": "^4.16.3"
+  }
+}

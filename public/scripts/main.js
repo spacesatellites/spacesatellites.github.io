@@ -19,7 +19,7 @@ function init() {
   var loader = new THREE.JSONLoader();
 
     //load the resource Voyager scene.children[2].materials
-    loader.load('/models/voyager.json',
+    loader.load('../models/voyager.json',
       //set callback function
       function ( geometry, materials ) {
       var material = new THREE.MeshFaceMaterial( materials );
