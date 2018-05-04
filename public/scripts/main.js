@@ -1,7 +1,8 @@
 var container = $('#container');
 var camera;
 var scene;
-var voyager;
+var modelNames=['voyager','apollosoyuz'];
+var satellites = [];
 var renderer;
 
 function init() {
@@ -15,22 +16,26 @@ function init() {
   //define the scene
   scene = new THREE.Scene();
 
-
+  // Loads all of the satellite models
   var loader = new THREE.JSONLoader();
 
+  for(i in modelNames){
     //load the resource Voyager scene.children[2].materials
-    loader.load('../models/voyager.json',
+    loader.load('../models/'+modelNames[i]+'.json',
       //set callback function
       function ( geometry, materials ) {
       var material = new THREE.MeshFaceMaterial( materials );
-      voyager = new THREE.Mesh( geometry, material );
-      voyager.scale.set(5,5,5);
-      voyager.position.set (-340, 0, 0);
-      voyager.name = "voyager"
-      scene.add( voyager );
+      var satellite = new THREE.Mesh( geometry, material );
+      satellite.scale.set(5,5,5);
+      satellite.position.set (-340, 0, 0);
+      satellite.name = modelNames[i];
+      satellites.push(satellite);
+      scene.add( satellite );
       render();
       // animate();
     });
+  };
+
   // //light stuff
 
     var light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1.8 );
@@ -59,12 +64,10 @@ function render() {
   requestAnimationFrame(render)
 
   var time = performance.now() * 0.001;
-
-  // lunarlander.rotation.y = time * 0.6;
-  // gemini.rotation.y = time * 0.6;
-  // saturnV.rotation.y = time * 0.6;
-  voyager.rotation.y = time * 0.6;
-  // apollosoyuz.rotation.y = time * 0.6;
+  // sets rotation for each satellite
+  for (i in satellites){
+    satellites[i].rotation.y = time * 0.6;
+  }
 
   renderer.render(scene, camera)
   // animateStars();
