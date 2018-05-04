@@ -18,6 +18,7 @@ function init() {
 
   // Loads all of the satellite models
   var loader = new THREE.JSONLoader();
+  var xpos = -450;
 
   for(i in modelNames){
     //load the resource Voyager scene.children[2].materials
@@ -27,10 +28,11 @@ function init() {
       var material = new THREE.MeshFaceMaterial( materials );
       var satellite = new THREE.Mesh( geometry, material );
       satellite.scale.set(5,5,5);
-      satellite.position.set (-340, 0, 0);
+      satellite.position.set (xpos, 0, 0);
       satellite.name = modelNames[i];
       satellites.push(satellite);
       scene.add( satellite );
+      xpos = xpos +250;
       render();
       // animate();
     });
