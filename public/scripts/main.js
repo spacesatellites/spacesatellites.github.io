@@ -32,7 +32,6 @@ function init() {
       satellite.name = modelNames[i];
       satellite.scale.set(scales[i], scales[i],scales[i]);
       satellite.position.set(positions[i][0],positions[i][1],positions[i][2]);
-      console.log(satellite);
       satellites.push(satellite);
       scene.add( satellite );
       render();
