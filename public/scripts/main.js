@@ -1,7 +1,10 @@
 var container = $('#container');
 var camera;
 var scene;
-var modelNames=['voyager','apollosoyuz'];
+var modelNames=['voyager','gemini','apollosoyuz','saturnV','lunarlander'];
+var scales = [15,9,3,3,2];
+var positions = [[-340,-60,0],[-440,0,0],[-140,20,0],[0,0,0],[140,0,0]];
+
 var satellites = [];
 var renderer;
 
@@ -18,7 +21,6 @@ function init() {
 
   // Loads all of the satellite models
   var loader = new THREE.JSONLoader();
-  var xpos = -450;
 
   for(i in modelNames){
     //load the resource Voyager scene.children[2].materials
@@ -27,12 +29,12 @@ function init() {
       function ( geometry, materials ) {
       var material = new THREE.MeshFaceMaterial( materials );
       var satellite = new THREE.Mesh( geometry, material );
-      satellite.scale.set(5,5,5);
-      satellite.position.set (xpos, 0, 0);
       satellite.name = modelNames[i];
+      satellite.scale.set(scales[i], scales[i],scales[i]);
+      satellite.position.set(positions[i][0],positions[i][1],positions[i][2]);
+      console.log(satellite);
       satellites.push(satellite);
       scene.add( satellite );
-      xpos = xpos +250;
       render();
       // animate();
     });
@@ -66,10 +68,12 @@ function render() {
   requestAnimationFrame(render)
 
   var time = performance.now() * 0.001;
+  
   // sets rotation for each satellite
   for (i in satellites){
     satellites[i].rotation.y = time * 0.6;
   }
+
 
   renderer.render(scene, camera)
   // animateStars();
