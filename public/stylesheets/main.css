@@ -1,8 +1,32 @@
 #container{
 	width: 100%;
+	position: relative;
 }
 
 canvas{
 	width: 100% !important;
 	height: 100% !important;
+}
+
+#buttons{
+	position: absolute;
+	bottom: 30%;
+	z-index: 1;
+	left: 16%;
+    width: 80%;
+}
+
+#buttons a {
+	margin:1rem;
+}
+
+/*#descriptions{
+	position: absolute;
+	z-index: 1;
+}*/
+
+@media (max-width: 800px){
+	#buttons a{
+		margin: 0rem;
+	}
 }
